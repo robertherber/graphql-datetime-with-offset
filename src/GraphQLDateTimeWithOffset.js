@@ -9,31 +9,27 @@ const serialize = (value) => {
   const { offset = 0, date } = value;
 
   if (!date) {
-    throw new GraphQLError(`serialize: require object with structure { date: Date, offset: Number } found: ${JSON.stringify(value)}`);
+    throw new GraphQLError(`Requires object with structure { date: Date, offset: Number } - found: ${JSON.stringify(value)}`);
   }
 
   if (!(date instanceof Date)) {
-    throw new GraphQLError(`serialize: require date parameter to be a date - found ${date}`);
+    throw new GraphQLError(`Requires date parameter to be a date - found ${date}`);
   }
 
   if (!Number.isInteger(offset)) {
-    throw new GraphQLError(`serialize: offset is not a number - found ${offset}`);
+    throw new GraphQLError(`Requires offset to be a number - found ${offset}`);
   }
 
   if (Math.abs(offset) > 1440) {
-    throw new GraphQLError(`serialize: offset is out of range -1440 <= offset <= 1440 - found ${offset}`);
+    throw new GraphQLError(`Requires offset to be in range -1440 <= offset <= 1440 - found ${offset}`);
   }
 
   const zone = FixedOffsetZone.instance(offset);
 
-  if (!zone.isValid) {
-    throw new GraphQLError(`serialize: invalid zone ${zone.invalidExplanation}`);
-  }
-
   const luxonDate = DateTime.fromJSDate(date, { zone });
 
   if (!luxonDate.isValid) {
-    throw new GraphQLError(`serialize: ${luxonDate.invalidExplanation}`);
+    throw new GraphQLError(`${luxonDate.invalidExplanation}`);
   }
 
   return luxonDate.toISO();
@@ -43,7 +39,7 @@ const parseValue = (v) => {
   const luxonDate = DateTime.fromISO(v, { setZone: true, zone: FixedOffsetZone.utcInstance });
 
   if (!luxonDate.isValid) {
-    throw new GraphQLError(`parseValue: ${luxonDate.invalidExplanation}`);
+    throw new GraphQLError(luxonDate.invalidExplanation);
   }
 
   const date = luxonDate.toJSDate(),
@@ -55,7 +51,7 @@ const parseValue = (v) => {
 const parseLiteral = (ast) => {
   // console.log("parseLiteral");
   if (ast.kind !== Kind.STRING) {
-    throw new GraphQLError(`parseLiteral: require date with ISO format - found: ${ast.kind}`, [ast]);
+    throw new GraphQLError(`expected: ${Kind.STRING} - found: ${ast.kind}`);
   }
 
   const v = ast.value.toString();

@@ -29,7 +29,7 @@ describe('serialize', () => {
   test('Should serialize with offset 999999999999', () => {
     const offset = 999999999999;
     const now = new Date('2019-07-18T10:41:27.923Z');
-    expect(() => serialize({ date: now, offset })).toThrow(new GraphQLError(`serialize: offset is out of range -1440 <= offset <= 1440 - found ${offset}`));
+    expect(() => serialize({ date: now, offset })).toThrow(new GraphQLError(`Requires offset to be in range -1440 <= offset <= 1440 - found 999999999999`));
   });
 
   test('Should serialize with offset -60', () => {
@@ -69,7 +69,7 @@ describe('parseValue', () => {
   });
 
   it('Should throw when date is not ISO', () => {
-    expect(() => parseValue('2008-09-15T15:53:00sdfsdf')).toThrow(new GraphQLError("parseValue: the input \"2008-09-15T15:53:00sdfsdf\" can't be parsed as ISO 8601"));
+    expect(() => parseValue('2008-09-15T15:53:00sdfsdf')).toThrow(new GraphQLError("the input \"2008-09-15T15:53:00sdfsdf\" can't be parsed as ISO 8601"));
   });
 
   it('Should allow date input', () => {
@@ -101,8 +101,8 @@ describe('parseLiteral', () => {
   test('Should fail parsing number as literal', async () => {
     const now = new Date(),
           nowISO = now.valueOf(),
-          ast = { value: nowISO, kind: Kind.NUMBER };
+          ast = { value: nowISO, kind: Kind.INT };
 
-    await expect(() => parseLiteral(ast)).toThrow(new GraphQLError(`parseLiteral: require date with ISO format - found: ${ast.kind}`, [ast]));
+    await expect(() => parseLiteral(ast)).toThrow(new GraphQLError('expected: StringValue - found: IntValue'));
   });
 });
