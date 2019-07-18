@@ -1,9 +1,9 @@
 {
   "name": "graphql-datetime-with-offset",
   "version": "0.0.3",
-  "description": "graphql-datetime-with-offset accepts Dates in ISO 8601 format and parses them to { date: Date, offset: Number } format",
+  "description": "GraphQL Scalar that parses dates from ISO 8601 format to { date: Date, offset: Number }",
   "main": "index.js",
-  "repository": "https://github.com/robertherber/GraphQLDateTimeWithOffset",
+  "repository": "https://github.com/robertherber/graphql-datetime-with-offset",
   "author": "Robert Herber <robert@herber.me>",
   "license": "MIT",
   "files": [
