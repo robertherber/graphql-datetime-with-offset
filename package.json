@@ -1,12 +1,20 @@
 {
   "name": "graphql-datetime-with-offset",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GraphQL Scalar that parses dates from ISO 8601 format to { date: Date, offset: Number }",
   "main": "index.js",
   "repository": "https://github.com/robertherber/graphql-datetime-with-offset",
   "author": "Robert Herber <robert@herber.me>",
   "license": "MIT",
-  "keywords": ["graphql", "scalar", "date", "node", "iso", "timezone", "offset"],
+  "keywords": [
+    "graphql",
+    "scalar",
+    "date",
+    "node",
+    "iso",
+    "timezone",
+    "offset"
+  ],
   "files": [
     "dist/GraphQLDateTimeWithOffset.js",
     "esnext.js",
