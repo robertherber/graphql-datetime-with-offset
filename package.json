@@ -1,12 +1,16 @@
 {
-  "name": "GraphQLDateTimeWithOffset",
-  "version": "0.0.1",
-  "description": "GraphQLDateTimeWithOffset accepts Dates in ISO 8601 format and parses them to { date: Date, offset: Number } format",
+  "name": "graphql-datetime-with-offset",
+  "version": "0.0.2",
+  "description": "graphql-datetime-with-offset accepts Dates in ISO 8601 format and parses them to { date: Date, offset: Number } format",
   "main": "index.js",
   "repository": "https://github.com/robertherber/GraphQLDateTimeWithOffset",
   "author": "Robert Herber <robert@herber.me>",
   "license": "MIT",
-  "files": ["dist/GraphQLDateTimeWithOffset.js", "esnext.js", "src/GraphQLDateTimeWithOffset.js"],
+  "files": [
+    "dist/GraphQLDateTimeWithOffset.js",
+    "esnext.js",
+    "src/GraphQLDateTimeWithOffset.js"
+  ],
   "private": false,
   "scripts": {
     "test": "jest src && eslint src",
