@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
-const GraphQLDateTimeWithOffset = require('GraphQLDateTimeWithOffset');
+const GraphQLDateTimeWithOffset = require('graphql-datetime-with-offset');
 
 // This is a (sample) collection of events we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -47,9 +47,6 @@ const typeDefs = gql`
     dateWithOffset: GraphQLDateTimeWithOffset
   ): Event
 
-  addEventStrict(title: String!
-  dateWithOffset: GraphQLDateTimeWithOffset!
-): Event
   }
 `;
 

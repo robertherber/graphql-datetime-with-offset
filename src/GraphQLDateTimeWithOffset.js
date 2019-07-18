@@ -54,9 +54,6 @@ const parseValue = (v) => {
 
 const parseLiteral = (ast) => {
   // console.log("parseLiteral");
-  if (ast.kind === Kind.NULL) {
-    return null;
-  }
   if (ast.kind !== Kind.STRING) {
     throw new GraphQLError(`parseLiteral: require date with ISO format - found: ${ast.kind}`, [ast]);
   }
@@ -65,7 +62,6 @@ const parseLiteral = (ast) => {
 
   return parseValue(v);
 };
-
 
 const GraphQLDateTimeWithOffset = new GraphQLScalarType({
   name: 'GraphQLDateTimeWithOffset',
@@ -81,4 +77,4 @@ const GraphQLDateTimeWithOffset = new GraphQLScalarType({
   parseLiteral,
 });
 
-export default GraphQLDateTimeWithOffset;
+module.exports = GraphQLDateTimeWithOffset;

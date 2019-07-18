@@ -24,7 +24,7 @@ This is an example of how to use it, also available in the /example folder:
 
 ```js
 const { ApolloServer, gql } = require('apollo-server');
-const GraphQLDateTimeWithOffset = require('GraphQLDateTimeWithOffset');
+const GraphQLDateTimeWithOffset = require('graphql-datetime-with-offset');
 
 const data = {
   events: [
@@ -58,10 +58,10 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addEvent(
-      title: String
-      dateWithOffset: GraphQLDateTimeWithOffset
-    ): Event
+    addEvent(title: String
+    dateWithOffset: GraphQLDateTimeWithOffset
+  ): Event
+
   }
 `;
 
