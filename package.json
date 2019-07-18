@@ -15,7 +15,7 @@
   "scripts": {
     "test": "jest src && eslint src",
     "build": "babel 'src' --out-dir 'dist' --source-maps",
-    "prepublish": "yarn build"
+    "prepublish": "yarn test && yarn build"
   },
   "devDependencies": {
     "@babel/cli": "7",
