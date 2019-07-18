@@ -4,7 +4,7 @@ import { GraphQLError } from 'graphql/error';
 import { DateTime, FixedOffsetZone } from 'luxon';
 
 
-export const serialize = (value) => {
+const serialize = (value) => {
   // console.log("serialize");
   const { offset = 0, date } = value;
 
@@ -39,7 +39,7 @@ export const serialize = (value) => {
   return luxonDate.toISO();
 };
 
-export const parseValue = (v) => {
+const parseValue = (v) => {
   const luxonDate = DateTime.fromISO(v, { setZone: true, zone: FixedOffsetZone.utcInstance });
 
   if (!luxonDate.isValid) {
@@ -52,8 +52,11 @@ export const parseValue = (v) => {
   return { date, offset };
 };
 
-export const parseLiteral = (ast) => {
+const parseLiteral = (ast) => {
   // console.log("parseLiteral");
+  if (ast.kind === Kind.NULL) {
+    return null;
+  }
   if (ast.kind !== Kind.STRING) {
     throw new GraphQLError(`parseLiteral: require date with ISO format - found: ${ast.kind}`, [ast]);
   }
@@ -64,7 +67,7 @@ export const parseLiteral = (ast) => {
 };
 
 
-export const GraphQLDateTimeWithOffset = new GraphQLScalarType({
+const GraphQLDateTimeWithOffset = new GraphQLScalarType({
   name: 'GraphQLDateTimeWithOffset',
   description: 'GraphQLDateTimeWithOffset accepts Dates in ISO 8601 format and parses them to { date: Date, offset: Number } format',
 
@@ -77,3 +80,5 @@ export const GraphQLDateTimeWithOffset = new GraphQLScalarType({
   // AST from client towards database
   parseLiteral,
 });
+
+export default GraphQLDateTimeWithOffset;

@@ -1,7 +1,10 @@
 import { Kind } from 'graphql/language';
 import { GraphQLError } from 'graphql/error';
 
-import { parseValue, parseLiteral, serialize } from './GraphQLDateTimeWithOffset';
+import GraphQLDateTimeWithOffset from './GraphQLDateTimeWithOffset';
+
+
+const { parseValue, parseLiteral, serialize } = GraphQLDateTimeWithOffset;
 
 
 describe('serialize', () => {
@@ -101,5 +104,10 @@ describe('parseLiteral', () => {
           ast = { value: nowISO, kind: Kind.NUMBER };
 
     await expect(() => parseLiteral(ast)).toThrow(new GraphQLError(`parseLiteral: require date with ISO format - found: ${ast.kind}`, [ast]));
+  });
+
+  test('Should be ok with null', () => {
+    const value = parseLiteral({ value: null, kind: Kind.NULL });
+    expect(value).toEqual(null);
   });
 });

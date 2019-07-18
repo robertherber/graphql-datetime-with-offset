@@ -46,6 +46,10 @@ const typeDefs = gql`
     addEvent(title: String
     dateWithOffset: GraphQLDateTimeWithOffset
   ): Event
+
+  addEventStrict(title: String!
+  dateWithOffset: GraphQLDateTimeWithOffset!
+): Event
   }
 `;
 
