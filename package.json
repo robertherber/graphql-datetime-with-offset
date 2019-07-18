@@ -1,0 +1,41 @@
+{
+  "name": "GraphQLDateTimeWithOffset",
+  "version": "0.0.1",
+  "description": "GraphQLDateTimeWithOffset accepts Dates in ISO 8601 format and parses them to { date: Date, offset: Number } format",
+  "main": "index.js",
+  "repository": "https://github.com/robertherber/GraphQLDateTimeWithOffset",
+  "author": "Robert Herber <robert@herber.me>",
+  "license": "MIT",
+  "files": ["dist/GraphQLDateTimeWithOffset.js", "esnext.js", "src/GraphQLDateTimeWithOffset.js"],
+  "private": false,
+  "scripts": {
+    "test": "jest src && eslint src",
+    "build": "babel 'src' --out-dir 'dist' --source-maps",
+    "prepublish": "yarn build"
+  },
+  "devDependencies": {
+    "@babel/cli": "7",
+    "@babel/core": "7",
+    "@babel/node": "7",
+    "@babel/preset-env": "7",
+    "eslint": "5",
+    "eslint-config-kingstinct-react-native": "3",
+    "eslint-plugin-flowtype": "3",
+    "eslint-plugin-flowtype-errors": "4",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-jest": "22",
+    "eslint-plugin-json": "1",
+    "eslint-plugin-jsx-a11y": "6",
+    "eslint-plugin-lodash-fp": "2",
+    "eslint-plugin-promise": "4",
+    "eslint-plugin-react": "7",
+    "eslint-plugin-react-hooks": "1",
+    "eslint-plugin-react-native": "3",
+    "flow-bin": "*",
+    "jest": "24"
+  },
+  "dependencies": {
+    "graphql": "^14.4.2",
+    "luxon": "^1.17.1"
+  }
+}

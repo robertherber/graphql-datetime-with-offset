@@ -1,0 +1,13 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "GraphQLDateTimeWithOffset": "file:..",
+    "apollo-server": "^2.7.0"
+  }
+}
