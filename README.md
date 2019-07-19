@@ -20,11 +20,23 @@ Or using npm
 npm install --save graphql-datetime-with-offset
 ```
 
-This is an example of how to use it, also available in the /example folder:
+## v2
+Added option of using Luxon instance directly as `GraphQLDateTimeLuxon`. Also means there's a breaking change where you have to require `GraphQLDateTimeWithOffset` like this now:
+
+`const { GraphQLDateTimeWithOffset } = require('graphql-datetime-with-offset');`
+
+and if you want to use the Luxon instance directly:
+
+``const { GraphQLDateTimeLuxon } = require('graphql-datetime-with-offset');``
+
+## Examples
+
+This is an example of how to use it, also available in the /examples folder:
 
 ```js
-const { ApolloServer, gql } = require('apollo-server');
-const GraphQLDateTimeWithOffset = require('graphql-datetime-with-offset');
+const { ApolloServer, gql } = require('apollo-server'),
+      { GraphQLDateTimeWithOffset } = require('graphql-datetime-with-offset');
+
 
 const data = {
   events: [
@@ -58,10 +70,10 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addEvent(title: String
-    dateWithOffset: GraphQLDateTimeWithOffset
-  ): Event
-
+    addEvent(
+      title: String
+      dateWithOffset: GraphQLDateTimeWithOffset
+    ): Event
   }
 `;
 
