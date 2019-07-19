@@ -23,7 +23,7 @@
   "private": false,
   "scripts": {
     "test": "jest src && eslint src",
-    "build": "babel 'src' --out-dir 'dist' --source-maps",
+    "build": "rimraf dist && babel 'src' --out-dir 'dist' --source-maps",
     "prepublish": "yarn test && yarn build"
   },
   "devDependencies": {
@@ -45,7 +45,8 @@
     "eslint-plugin-react-hooks": "1",
     "eslint-plugin-react-native": "3",
     "flow-bin": "*",
-    "jest": "24"
+    "jest": "24",
+    "rimraf": "^2.6.3"
   },
   "dependencies": {
     "graphql": "^14.4.2",

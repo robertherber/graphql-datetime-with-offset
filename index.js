@@ -1,1 +1,8 @@
-module.exports = require('./dist/GraphQLDateTimeWithOffset');
+const GraphQLDateTimeWithOffset = require('./dist/GraphQLDateTimeWithOffset'),
+      GraphQLDateTimeLuxon = require('./dist/GraphQLDateTimeLuxon');
+
+
+module.exports = {
+  GraphQLDateTimeWithOffset,
+  GraphQLDateTimeLuxon,
+};

@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { GraphQLDateTimeWithOffset } = require('graphql-datetime-with-offset');
+const { GraphQLDateTimeLuxon } = require('graphql-datetime-with-offset');
+const { DateTime } = require('luxon');
 
 // This is a (sample) collection of events we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
@@ -9,17 +10,11 @@ const data = {
   events: [
     {
       title: 'Meeting with Singapore Office',
-      dateWithOffset: {
-        date: new Date('2019-07-18T08:00:00.000Z'),
-        offset: 480,
-      },
+      dateWithOffset: DateTime.fromISO('2019-07-18T08:00:00.000+08:00', { setZone: true }),
     },
     {
       title: 'Meeting with New York Office',
-      dateWithOffset: {
-        date: new Date('2019-07-18T16:00:00.000Z'),
-        offset: -300,
-      },
+      dateWithOffset: DateTime.fromISO('2019-07-18T16:00:00.000-05:00', { setZone: true }),
     },
   ],
 };
@@ -27,13 +22,13 @@ const data = {
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
-  scalar GraphQLDateTimeWithOffset
+  scalar GraphQLDateTimeLuxon
   # Comments in GraphQL are defined with the hash (#) symbol.
 
   # This "Event" type can be used in other type declarations.
   type Event {
     title: String
-    dateWithOffset: GraphQLDateTimeWithOffset
+    dateWithOffset: GraphQLDateTimeLuxon
   }
 
   # The "Query" type is the root of all GraphQL queries.
@@ -44,7 +39,7 @@ const typeDefs = gql`
 
   type Mutation {
     addEvent(title: String
-    dateWithOffset: GraphQLDateTimeWithOffset
+    dateWithOffset: GraphQLDateTimeLuxon
   ): Event
 
   }
@@ -53,7 +48,7 @@ const typeDefs = gql`
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve events from the "events" array above.
 const resolvers = {
-  GraphQLDateTimeWithOffset,
+  GraphQLDateTimeLuxon,
   Query: {
     events: () => data.events,
   },

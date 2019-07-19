@@ -3,6 +3,8 @@ import { Kind } from 'graphql/language';
 import { GraphQLError } from 'graphql/error';
 import { DateTime, FixedOffsetZone } from 'luxon';
 
+import GraphQLDateTimeLuxon from './GraphQLDateTimeLuxon';
+
 
 const serialize = (value) => {
   // console.log("serialize");
@@ -28,19 +30,11 @@ const serialize = (value) => {
 
   const luxonDate = DateTime.fromJSDate(date, { zone });
 
-  if (!luxonDate.isValid) {
-    throw new GraphQLError(`${luxonDate.invalidExplanation}`);
-  }
-
-  return luxonDate.toISO();
+  return GraphQLDateTimeLuxon.serialize(luxonDate);
 };
 
 const parseValue = (v) => {
-  const luxonDate = DateTime.fromISO(v, { setZone: true, zone: FixedOffsetZone.utcInstance });
-
-  if (!luxonDate.isValid) {
-    throw new GraphQLError(luxonDate.invalidExplanation);
-  }
+  const luxonDate = GraphQLDateTimeLuxon.parseValue(v);
 
   const date = luxonDate.toJSDate(),
         { offset } = luxonDate;
@@ -49,7 +43,6 @@ const parseValue = (v) => {
 };
 
 const parseLiteral = (ast) => {
-  // console.log("parseLiteral");
   if (ast.kind !== Kind.STRING) {
     throw new GraphQLError(`expected: ${Kind.STRING} - found: ${ast.kind}`);
   }

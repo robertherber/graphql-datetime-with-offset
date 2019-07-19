@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.7.0",
-    "graphql-datetime-with-offset": "file:.."
+    "graphql-datetime-with-offset": "file:..",
+    "luxon": "^1.17.1"
   }
 }
