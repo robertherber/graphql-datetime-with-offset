@@ -16,7 +16,7 @@
     "offset"
   ],
   "files": [
-    "dist/GraphQLDateTimeWithOffset.js",
+    "dist",
     "esnext.js",
     "src/GraphQLDateTimeWithOffset.js"
   ],
