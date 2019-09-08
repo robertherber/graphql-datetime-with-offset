@@ -31,9 +31,9 @@
     "@babel/core": "7",
     "@babel/node": "7",
     "@babel/preset-env": "7",
-    "eslint": "5",
+    "eslint": "6",
     "eslint-config-kingstinct-react-native": "3",
-    "eslint-plugin-flowtype": "3",
+    "eslint-plugin-flowtype": "4",
     "eslint-plugin-flowtype-errors": "4",
     "eslint-plugin-import": "2",
     "eslint-plugin-jest": "22",
@@ -42,14 +42,14 @@
     "eslint-plugin-lodash-fp": "2",
     "eslint-plugin-promise": "4",
     "eslint-plugin-react": "7",
-    "eslint-plugin-react-hooks": "1",
+    "eslint-plugin-react-hooks": "2",
     "eslint-plugin-react-native": "3",
     "flow-bin": "*",
     "jest": "24",
-    "rimraf": "^2.6.3"
+    "rimraf": "3"
   },
   "dependencies": {
-    "graphql": "^14.4.2",
+    "graphql": "14",
     "luxon": "^1.17.1"
   }
 }
