@@ -5,6 +5,10 @@ import { DateTime, FixedOffsetZone } from 'luxon';
 
 
 const serialize = (luxonDate) => {
+  if (!luxonDate) {
+    return null;
+  }
+
   if (!luxonDate.isValid) {
     throw new GraphQLError(`${luxonDate.invalidExplanation}`);
   }
@@ -13,6 +17,10 @@ const serialize = (luxonDate) => {
 };
 
 const parseValue = (v) => {
+  if (!v) {
+    return null;
+  }
+
   const luxonDate = DateTime.fromISO(v, { setZone: true, zone: FixedOffsetZone.utcInstance });
 
   if (!luxonDate.isValid) {

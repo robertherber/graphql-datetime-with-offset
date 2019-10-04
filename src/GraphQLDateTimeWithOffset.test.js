@@ -14,6 +14,11 @@ describe('serialize', () => {
     expect(value).toEqual(now.toISOString());
   });
 
+  test('Should return null when serializing null', () => {
+    const value = serialize(null);
+    expect(value).toEqual(null);
+  });
+
   test('Should serialize as UTC', () => {
     const now = new Date('2019-07-18T10:41:27.923Z');
     const value = serialize({ date: now });
@@ -53,6 +58,11 @@ describe('parseValue', () => {
     const value = parseValue(nowISO);
     expect(value).toHaveProperty('date', now);
     expect(value).toHaveProperty('offset', 0);
+  });
+
+  test('Should handle null gracefully', () => {
+    const value = parseValue(null);
+    expect(value).toEqual(null);
   });
 
   it('Should accept format', () => {

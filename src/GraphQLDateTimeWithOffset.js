@@ -7,6 +7,9 @@ import GraphQLDateTimeLuxon from './GraphQLDateTimeLuxon';
 
 
 const serialize = (value) => {
+  if (!value) {
+    return null;
+  }
   // console.log("serialize");
   const { offset = 0, date } = value;
 
@@ -34,6 +37,10 @@ const serialize = (value) => {
 };
 
 const parseValue = (v) => {
+  if (!v) {
+    return null;
+  }
+
   const luxonDate = GraphQLDateTimeLuxon.parseValue(v);
 
   const date = luxonDate.toJSDate(),
